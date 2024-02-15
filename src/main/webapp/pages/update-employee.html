@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Обновить сотрудника</title>
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 20%;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <form method="post" th:action="@{'/employee/update/' + ${employee.get().getId()}}" th:object="${employee}">
+        <input type="text" th:field="*{id}"/>
+        <input type="text" th:field="*{name}"/>
+        <select name="positions" th:field="*{position}">
+            <option th:each="pos : ${T(ru.sber.domain.enums.Position).values()}"
+                    th:value="${pos}" th:text="${pos}"></option>
+        </select>
+        <button type="submit">Редактировать</button>
+    </form>
+</div>
+</body>
+</html>

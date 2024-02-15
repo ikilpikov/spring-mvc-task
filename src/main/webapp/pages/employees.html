@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Сотрудники</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="btn btn-sm align-middle btn-outline-secondary" type="button" onclick="toDirectors()">Руководители</button>
+    <button class="btn btn-sm align-middle btn-outline-secondary" type="button" onclick="toEmployees()">Сотрудники</button>
+    </div>
+</nav>
+<div class="container">
+    <table class="table table-bordered">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Имя</th>
+            <th scope="col">Должность</th>
+            <th scope="col" >Действия</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="employee: ${employees}">
+            <th scope="row" th:text="${employee.id}"></th>
+            <th scope="row" th:text="${employee.name}"></th>
+            <th scope="row" th:text="${employee.position}"></th>
+            <th scope="row" style="display:flex; flex-direction: column">
+                <form method="get" style="margin: 0;" th:action="@{'/employee/update/' + ${employee.id}}">
+                    <button class="btn btn-primary" style="margin: 2px;" type="submit">Редактировать</button>
+                </form>
+
+                <form method="post" th:action="@{'/employee/delete/' + ${employee.id}}">
+                    <button class="btn btn-danger" style="margin: 2px;" >Удалить</button>
+                </form>
+            </th>
+        </tr>
+        </tbody>
+    </table>
+    <form method="get" action="/employee/add">
+        <button type="submit">Добавить сотрудника</button>
+    </form>
+</div>
+<script>
+    function toDirectors() {
+        window.location.href = '/director/all';
+    }
+
+    function toEmployees() {
+        window.location.href = '/employee/all';
+    }
+
+    function deleteEmployee(id) {
+        window.location.href = '/employee/all';
+    }
+</script>
+</body>
+</html>

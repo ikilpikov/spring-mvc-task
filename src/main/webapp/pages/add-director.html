@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить руководителя</title>
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 20%;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <form th:object="${director}" method="post"  th:action="@{/director/add}">
+        <input type="text" th:field="*{id}" />
+        <input type="text" th:field="*{name}" />
+        <select name="departments" th:field="*{department}">
+            <option th:each="dep : ${T(ru.sber.domain.enums.Department).values()}"
+                    th:value="${dep}" th:text="${dep}"></option>
+        </select>
+        <input type="text" th:field="*{employees}" />
+        <button type="submit">Добавить</button>
+    </form>
+</div>
+</body>
+</html>

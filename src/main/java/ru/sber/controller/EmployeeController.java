@@ -33,7 +33,7 @@ public class EmployeeController {
         return "employees";
     }
 
-    @PostMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String deleteEmployee(@PathVariable int id) {
         repository.delete(id);
         return "redirect:/employee/all";
@@ -45,7 +45,7 @@ public class EmployeeController {
         return "update-employee";
     }
 
-    @PostMapping("/update/{id}")
+    @PutMapping("/update/{id}")
     public String updateEmployee(@PathVariable int id, @ModelAttribute Employee employee) {
         repository.update(id, employee);
         return "redirect:/employee/all";

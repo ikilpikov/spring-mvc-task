@@ -32,7 +32,7 @@
                     <button class="btn btn-primary" style="margin: 2px;" type="submit">Редактировать</button>
                 </form>
 
-                <form method="post" th:action="@{'/employee/delete/' + ${employee.id}}">
+                <form th:method="delete" th:action="@{'/employee/delete/' + ${employee.id}}">
                     <button class="btn btn-danger" style="margin: 2px;" >Удалить</button>
                 </form>
             </th>

@@ -13,7 +13,7 @@
 </head>
 <body>
 <div>
-    <form method="post" th:action="@{'/employee/update/' + ${employee.get().getId()}}" th:object="${employee}">
+    <form th:method="put" th:action="@{'/employee/update/' + ${employee.get().getId()}}" th:object="${employee}">
         <input type="text" th:field="*{id}"/>
         <input type="text" th:field="*{name}"/>
         <select name="positions" th:field="*{position}">

@@ -28,7 +28,7 @@ public class DirectorController {
         return "directors";
     }
 
-    @PostMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public String deleteDirector(@PathVariable int id) {
         repository.delete(id);
         return "redirect:/director/all";
@@ -40,7 +40,7 @@ public class DirectorController {
         return "update-director";
     }
 
-    @PostMapping("/update/{id}")
+    @PutMapping("/update/{id}")
     public String updateEmployee(@PathVariable int id, @ModelAttribute Director director) {
         repository.update(id, director);
         return "redirect:/director/all";

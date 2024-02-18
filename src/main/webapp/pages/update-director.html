@@ -13,7 +13,7 @@
 </head>
 <body>
 <div>
-    <form method="post"  th:action="@{'/director/update/' + ${director.get().getId()}}" th:object="${director}">
+    <form th:method="put"  th:action="@{'/director/update/' + ${director.get().getId()}}" th:object="${director}">
         <input type="text" th:field="*{id}" />
         <input type="text" th:field="*{name}" />
         <select name="departments" th:field="*{department}">

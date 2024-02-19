@@ -42,7 +42,7 @@ public class DirectorRepositoryImpl implements DirectorRepository {
     @Override
     public void update(int id, Director director) {
         DIRECTORS.stream()
-                .filter(dir -> dir.getId() == 1)
+                .filter(dir -> dir.getId() == id)
                 .forEach(dir -> {
                     dir.setName(director.getName());
                     dir.setDepartment(dir.getDepartment());

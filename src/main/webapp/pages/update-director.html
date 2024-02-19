@@ -14,13 +14,21 @@
 <body>
 <div>
     <form th:method="put"  th:action="@{'/director/update/' + ${director.get().getId()}}" th:object="${director}">
+        <label>Айди:</label>
         <input type="text" th:field="*{id}" />
+        <br>
+        <label>Имя:</label>
         <input type="text" th:field="*{name}" />
+        <br>
+        <label>Отдел:</label>
         <select name="departments" th:field="*{department}">
             <option th:each="dep : ${T(ru.sber.domain.enums.Department).values()}"
                     th:value="${dep}" th:text="${dep}"></option>
         </select>
+        <br>
+        <label>Подчинённые</label>
         <input type="text" th:field="*{employees}" />
+        <br>
         <button type="submit">Редактировать</button>
     </form>
 </div>

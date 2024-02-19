@@ -14,12 +14,18 @@
 <body>
 <div>
     <form th:method="put" th:action="@{'/employee/update/' + ${employee.get().getId()}}" th:object="${employee}">
-        <input type="text" th:field="*{id}"/>
+        <label>Айди:</label>
+        <input type="text"  th:field="*{id}"/>
+        <br>
+        <label>Имя:</label>
         <input type="text" th:field="*{name}"/>
+        <br>
+        <label>Должность:</label>
         <select name="positions" th:field="*{position}">
             <option th:each="pos : ${T(ru.sber.domain.enums.Position).values()}"
                     th:value="${pos}" th:text="${pos}"></option>
         </select>
+        <br>
         <button type="submit">Редактировать</button>
     </form>
 </div>

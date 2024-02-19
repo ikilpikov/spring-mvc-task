@@ -15,7 +15,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
     private static final List<Employee> EMPLOYEES = new ArrayList<>();
     private static int ID = 0;
 
-    {
+    static {
         EMPLOYEES.add(new Employee(ID++, "Vasya", Position.JUNIOR));
         EMPLOYEES.add(new Employee(ID++, "Antoxa", Position.SENIOR));
         EMPLOYEES.add(new Employee(ID++, "Sanya", Position.MIDDLE));

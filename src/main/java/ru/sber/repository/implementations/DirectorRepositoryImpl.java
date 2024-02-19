@@ -2,9 +2,7 @@ package ru.sber.repository.implementations;
 
 import org.springframework.stereotype.Repository;
 import ru.sber.domain.Director;
-import ru.sber.domain.Employee;
 import ru.sber.domain.enums.Department;
-import ru.sber.domain.enums.Position;
 import ru.sber.exception.IdAlreadyExistsException;
 import ru.sber.repository.DirectorRepository;
 
@@ -17,7 +15,7 @@ public class DirectorRepositoryImpl implements DirectorRepository {
     private static final List<Director> DIRECTORS = new ArrayList<>();
     private static int ID = 0;
 
-    {
+    static {
         DIRECTORS.add(new Director(ID++, "Valera", Department.ANALYSIS, new ArrayList<>(List.of(0, 1, 2))));
         DIRECTORS.add(new Director(ID++, "Semen", Department.DEVELOPMENT, new ArrayList<>(List.of(1, 2))));
     }

@@ -16,13 +16,16 @@
     <form th:object="${employee}" method="post" th:action="@{/employee/add/}">
         <label>Айди:</label>
         <input type="text"  th:field="*{id}"/>
+        <br>
         <label>Имя:</label>
         <input type="text" th:field="*{name}"/>
+        <br>
         <label>Должность:</label>
         <select name="positions" th:field="*{position}">
              <option th:each="pos : ${T(ru.sber.domain.enums.Position).values()}"
                      th:value="${pos}" th:text="${pos}"></option>
          </select>
+        <br>
         <button type="submit">Добавить</button>
     </form>
 </div>

@@ -24,7 +24,7 @@ public class DirectorRepositoryImpl implements DirectorRepository {
 
     @Override
     public void create(Director director) throws IdAlreadyExistsException {
-        if (getById(director.getId()) != null) {
+        if (getById(director.getId()).isPresent()) {
             throw new IdAlreadyExistsException("Director with id " + director.getId() + " exists");
         }
 

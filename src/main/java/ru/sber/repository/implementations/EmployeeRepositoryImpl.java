@@ -23,7 +23,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 
     @Override
     public void create(Employee employee) throws IdAlreadyExistsException {
-        if (getById(employee.getId()) != null) {
+        if (getById(employee.getId()).isPresent()) {
             throw new IdAlreadyExistsException("Employee with id " + employee.getId() + " exists");
         }
         EMPLOYEES.add(employee);

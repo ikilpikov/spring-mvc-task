@@ -27,7 +27,9 @@
         </select>
         <br>
         <label>Подчиненные:</label>
-        <input type="text" th:field="*{employees}" />
+        <div th:each="employee : ${employees}">
+            <input type="checkbox" name="employee-id" th:value="${employee.id}" th:text="${employee.id + ' ' + employee.name}">
+        </div>
         <br>
         <button type="submit">Добавить</button>
     </form>

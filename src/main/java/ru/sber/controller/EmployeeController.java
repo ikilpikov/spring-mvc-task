@@ -46,7 +46,8 @@ public class EmployeeController {
     }
 
     @PutMapping("/update/{id}")
-    public String updateEmployee(@PathVariable int id, @ModelAttribute Employee employee) throws IdAlreadyExistsException {
+    public String updateEmployee(@PathVariable int id,
+                                 @ModelAttribute Employee employee) throws IdAlreadyExistsException {
         repository.update(id, employee);
         return "redirect:/employee/all";
     }

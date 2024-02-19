@@ -27,7 +27,11 @@
         </select>
         <br>
         <label>Подчинённые</label>
-        <input type="text" th:field="*{employees}" />
+        <div th:each="employee : ${employees}">
+            <input type="checkbox"  name="employee-id" th:value="${employee.id}"
+                   th:text="${employee.id + ' ' + employee.name}"
+                   th:checked="${#lists.contains(director.get().employees, employee.id)}">
+        </div>
         <br>
         <button type="submit">Редактировать</button>
     </form>

@@ -14,7 +14,7 @@ public interface DirectorRepository {
 
     List<Director> fetchAll();
 
-    void update(int id, Director director);
+    void update(int id, Director director) throws IdAlreadyExistsException;
 
     void delete(int id);
 

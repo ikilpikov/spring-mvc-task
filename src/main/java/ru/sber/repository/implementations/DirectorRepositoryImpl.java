@@ -40,10 +40,15 @@ public class DirectorRepositoryImpl implements DirectorRepository {
     }
 
     @Override
-    public void update(int id, Director director) {
+    public void update(int id, Director director) throws IdAlreadyExistsException {
+        if (director.getId() != id && getById(director.getId()).isPresent()) {
+            throw new IdAlreadyExistsException("Director with id " + director.getId() + " exists");
+        }
+
         DIRECTORS.stream()
                 .filter(dir -> dir.getId() == id)
                 .forEach(dir -> {
+                    dir.setId(director.getId());
                     dir.setName(director.getName());
                     dir.setDepartment(dir.getDepartment());
                     dir.setEmployees(director.getEmployees());

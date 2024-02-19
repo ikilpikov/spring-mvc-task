@@ -40,10 +40,15 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
     }
 
     @Override
-    public void update(int id, Employee employee) {
+    public void update(int id, Employee employee) throws IdAlreadyExistsException {
+        if (employee.getId() != id && getById(employee.getId()).isPresent()) {
+            throw new IdAlreadyExistsException("Employee with id " + employee.getId() + " exists");
+        }
+
         EMPLOYEES.stream()
                 .filter(emp -> emp.getId() == id)
                 .forEach(emp -> {
+                    emp.setId(employee.getId());
                     emp.setName(employee.getName());
                     emp.setPosition(employee.getPosition());
                 });

@@ -3,6 +3,7 @@ package ru.sber.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -22,7 +23,6 @@ public class EmployeeController {
 
     private EmployeeRepository repository;
 
-    @Autowired
     public EmployeeController(EmployeeRepository repository) {
         this.repository = repository;
     }
@@ -46,7 +46,7 @@ public class EmployeeController {
     }
 
     @PutMapping("/update/{id}")
-    public String updateEmployee(@PathVariable int id, @ModelAttribute Employee employee) {
+    public String updateEmployee(@PathVariable int id, @ModelAttribute Employee employee) throws IdAlreadyExistsException {
         repository.update(id, employee);
         return "redirect:/employee/all";
     }
@@ -64,7 +64,9 @@ public class EmployeeController {
     }
 
     @ExceptionHandler(IdAlreadyExistsException.class)
-    public String handleIdAlreadyExistsException(IdAlreadyExistsException ex) {
-        return "redirect:/employee/all";
+    public String handleIdAlreadyExistsException(IdAlreadyExistsException ex, Model model) {
+        model.addAttribute("message", "id не уникален, ошибка.");
+        model.addAttribute("employees", repository.fetchAll());
+        return "employees";
     }
 }

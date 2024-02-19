@@ -17,7 +17,6 @@ public class DirectorController {
 
     private DirectorRepository repository;
 
-    @Autowired
     public DirectorController(DirectorRepository repository) {
         this.repository = repository;
     }
@@ -41,7 +40,7 @@ public class DirectorController {
     }
 
     @PutMapping("/update/{id}")
-    public String updateEmployee(@PathVariable int id, @ModelAttribute Director director) {
+    public String updateEmployee(@PathVariable int id, @ModelAttribute Director director) throws IdAlreadyExistsException {
         repository.update(id, director);
         return "redirect:/director/all";
     }
@@ -59,8 +58,10 @@ public class DirectorController {
     }
 
     @ExceptionHandler(IdAlreadyExistsException.class)
-    public String handleIdAlreadyExistsException(IdAlreadyExistsException ex) {
-        return "redirect:/director/all";
+    public String handleIdAlreadyExistsException(IdAlreadyExistsException ex, Model model) {
+        model.addAttribute("message", "id не уникален, ошибка.");
+        model.addAttribute("directors", repository.fetchAll());
+        return "directors";
     }
 
 }

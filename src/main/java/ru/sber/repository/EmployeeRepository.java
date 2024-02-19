@@ -13,7 +13,7 @@ public interface EmployeeRepository {
 
         List<Employee> fetchAll();
 
-        void update(int id, Employee employee);
+        void update(int id, Employee employee) throws IdAlreadyExistsException;
 
         void delete(int id);
 

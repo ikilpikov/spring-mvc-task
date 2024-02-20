@@ -5,14 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.sber.domain.Director;
-import ru.sber.domain.Employee;
 import ru.sber.exception.IdAlreadyExistsException;
 import ru.sber.repository.DirectorRepository;
 import ru.sber.repository.EmployeeRepository;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 @EnableAspectJAutoProxy
@@ -33,7 +30,7 @@ public class DirectorController {
         return "directors";
     }
 
-    @DeleteMapping("/delete/{id}")
+    @PostMapping("/delete/{id}")
     public String deleteDirector(@PathVariable int id) {
         directorRepository.delete(id);
         return "redirect:/director/all";
@@ -48,7 +45,7 @@ public class DirectorController {
         return "update-director";
     }
 
-    @PutMapping("/update/{id}")
+    @PostMapping("/update/{id}")
     public String updateEmployee(@PathVariable int id,
                                  @ModelAttribute Director director,
                                  @RequestParam(name = "employee-id", required = false) List<Integer> selectedEmployees)
